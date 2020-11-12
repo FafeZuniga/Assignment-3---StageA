@@ -2,11 +2,13 @@ package com.assignment3;
 
 public class customer {
     private String name;
-    private int IDC;
+    private int ID;
+    private static int countC = 100;
+    private boolean status;
 
-    public customer(String name, int IDC){
+    public customer(String name){
         this.name = name;
-        this.IDC = IDC;
+        this.ID = countC++;
     }
 
     public void displayCustomerDetails(){
@@ -14,7 +16,7 @@ public class customer {
         System.out.println("ID: " + getCustomerID());
     }
 
-    public int getCustomerID() { return IDC; }
+    public int getCustomerID() { return ID; }
 
     public String getName() {
         return name;
