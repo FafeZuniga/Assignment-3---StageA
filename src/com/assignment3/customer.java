@@ -4,11 +4,13 @@ public class customer {
     private String name;
     private int ID;
     private static int countC = 100;
-    private boolean status;
+    private stock[]hire = new stock[4];
+    private int rentCount;
 
     public customer(String name){
         this.name = name;
         this.ID = countC++;
+        this.rentCount = 0;
     }
 
     public void displayCustomerDetails(){
@@ -25,5 +27,12 @@ public class customer {
     public void displayDetails() {
         System.out.println("Customer: " + getName());
         System.out.println("ID: " + getCustomerID());
+    }
+    public boolean rentStock(stock obj)
+    {
+        hire[rentCount]=obj;
+        obj.changeStatus();
+        rentCount++;
+        return true;
     }
 }

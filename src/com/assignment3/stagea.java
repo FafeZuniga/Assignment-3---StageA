@@ -60,15 +60,21 @@ public class stagea {
                     sc.nextLine();
                     target = sc.nextLine();
                     for (int i = 0; i < app.customers.length && a == null; i++) {
-                        name = app.customers[i].getName();
-                        if (name.equalsIgnoreCase(target)) {
+                        if (app.customers[i].getName().equalsIgnoreCase(target)) {
                             String target1;
-                            customer b;
-                            a = null;
+                            stock b;
                             String stockName;
                             System.out.println("Enter the stock you would like to hire: ");
                             sc.nextLine();
                             target1 = sc.nextLine();
+                            for(int j =0; j<app.stockCollection.length; j++){
+                                if(app.stockCollection[j].getStockTitle().equalsIgnoreCase(target1)){
+                                    if(app.stockCollection[j].getStatus()==false){
+                                        System.out.println("Item not available");
+                                    }
+                                    app.customers[i].rentStock(app.stockCollection[j]);
+                                }
+                            }
                         }
                     }
                     break;

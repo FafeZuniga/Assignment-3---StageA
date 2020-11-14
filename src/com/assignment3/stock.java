@@ -12,6 +12,7 @@ public class stock {
         this.title = title;
         this.ID = count++;
         this.type = type;
+        this.status = true;
     }
 
     public void displayDetails(){
@@ -22,5 +23,16 @@ public class stock {
     public int getStockID() { return ID; }
 
     public String getStockTitle() { return title; }
+
+    public boolean getStatus(){
+        return status;
+    }
+
+    public void changeStatus() {
+        if(status==true)
+            status = false;
+        else
+            status = true;
+    }
 }
 
