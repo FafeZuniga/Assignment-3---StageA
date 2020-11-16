@@ -32,9 +32,9 @@ public class stagea {
                     }else {
                         String type = app.stockType();
                         String title = app.stockTitle();
-                        int ID = app.getID();
 
-                        app.stockCollection[currentStock] = new stock(type, title, ID);
+
+                        app.stockCollection[currentStock] = new stock(type, title);
                     }
                     currentStock++;
                    // stock.ID++;
@@ -46,14 +46,37 @@ public class stagea {
                         break;
                     }else {
                         String name = app.customerName();
-                        int IDC = app.getCustomerID();
-                        app.customers[currentCustomer] = new customer(name,IDC);
+                        app.customers[currentCustomer] = new customer(name);
                     }
                     currentCustomer++;
                     break;
                 // Option 3
                 case 3:
-
+                    String target;
+                    customer a;
+                    a = null;
+                    String name;
+                    System.out.println("Enter the name of the customer: ");
+                    sc.nextLine();
+                    target = sc.nextLine();
+                    for (int i = 0; i < app.customers.length && a == null; i++) {
+                        if (app.customers[i].getName().equalsIgnoreCase(target)) {
+                            String target1;
+                            stock b;
+                            String stockName;
+                            System.out.println("Enter the stock you would like to hire: ");
+                            sc.nextLine();
+                            target1 = sc.nextLine();
+                            for(int j =0; j<app.stockCollection.length; j++){
+                                if(app.stockCollection[j].getStockTitle().equalsIgnoreCase(target1)){
+                                    if(app.stockCollection[j].getStatus()==false){
+                                        System.out.println("Item not available");
+                                    }
+                                    app.customers[i].rentStock(app.stockCollection[j]);
+                                }
+                            }
+                        }
+                    }
                     break;
                 //Option 4
                 case 4:
@@ -126,21 +149,7 @@ public class stagea {
             }
         }
     }
-
-    private int getID() {
-        for (int i = 1000; i < stockCollection.length; i++) {
-            int ID = i;
-            return i;
-        }
-        //ID++;
-        return 0;
-    }
-
-    private int getCustomerID(){
-        int IDC = 100;
-        return IDC;
-    }
-
+    
     private String stockTitle() {
         System.out.println("Please enter the title of the stock");
         String title = sc.next();

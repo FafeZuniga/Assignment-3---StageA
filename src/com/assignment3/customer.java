@@ -2,11 +2,15 @@ package com.assignment3;
 
 public class customer {
     private String name;
-    private int IDC;
+    private int ID;
+    private static int countC = 100;
+    private stock[]hire = new stock[4];
+    private int rentCount;
 
-    public customer(String name, int IDC){
+    public customer(String name){
         this.name = name;
-        this.IDC = IDC;
+        this.ID = countC++;
+        this.rentCount = 0;
     }
 
     public void displayCustomerDetails(){
@@ -14,7 +18,7 @@ public class customer {
         System.out.println("ID: " + getCustomerID());
     }
 
-    public int getCustomerID() { return IDC; }
+    public int getCustomerID() { return ID; }
 
     public String getName() {
         return name;
@@ -23,5 +27,12 @@ public class customer {
     public void displayDetails() {
         System.out.println("Customer: " + getName());
         System.out.println("ID: " + getCustomerID());
+    }
+    public boolean rentStock(stock obj)
+    {
+        hire[rentCount]=obj;
+        obj.changeStatus();
+        rentCount++;
+        return true;
     }
 }
