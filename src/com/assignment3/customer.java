@@ -27,9 +27,10 @@ public class customer {
     public void displayDetails() {
         System.out.println("Customer: " + getName());
         System.out.println("ID: " + getCustomerID());
+        for(int i=0;i<rentCount; i++){
+            System.out.println("Currently rented item ID: " + hire[i].getStockID());}
     }
-    public boolean rentStock(stock obj)
-    {
+    public boolean rentStock(stock obj) {
         hire[rentCount]=obj;
         obj.changeStatus();
         rentCount++;

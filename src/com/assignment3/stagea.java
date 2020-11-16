@@ -65,9 +65,8 @@ public class stagea {
                             stock b;
                             String stockName;
                             System.out.println("Enter the stock you would like to hire: ");
-                            sc.nextLine();
                             target1 = sc.nextLine();
-                            for(int j =0; j<app.stockCollection.length; j++){
+                            for(int j=0; j<app.stockCollection.length; j++){
                                 if(app.stockCollection[j].getStockTitle().equalsIgnoreCase(target1)){
                                     if(app.stockCollection[j].getStatus()==false){
                                         System.out.println("Item not available");
