@@ -2,7 +2,7 @@ package com.assignment3;
 
 import java.util.Scanner;
 
-public class stagea {
+public class stageb {
     static Scanner sc;
     int numStock = 0;
     int numCustomer = 0;
@@ -10,12 +10,12 @@ public class stagea {
     customer[] customers;
 
 
-    public stagea() {
+    public stageb() {
         this.sc = new Scanner(System.in);
     }
 
     public static void main(String[] args) {
-        stagea app = new stagea();
+        stageb app = new stageb();
         int currentStock = 0;
         int currentCustomer = 0;
         app.asksForStock();
@@ -30,23 +30,33 @@ public class stagea {
                     if (currentStock == app.stockCollection.length) {
                         System.out.println("Error - You cannot add any more stock.\n");
                         break;
-                    }else {
+                    } else {
                         String type = app.stockType();
-                        if(type.equalsIgnoreCase("Prop")){
+                        if (type.equalsIgnoreCase("Prop")) {
                             String title = app.stockTitle();
                             System.out.println("Please enter the height, width and length");
                             double height = sc.nextDouble();
                             double width = sc.nextDouble();
                             double length = sc.nextDouble();
-                            app.stockCollection[currentStock] = new prop(type, title,height,width,length);
+                            app.stockCollection[currentStock] = new prop(type, title, height, width, length);
                         }
-                        else
-
-
-
+                        if (type.equalsIgnoreCase("Backdrop")) {
+                                String title = app.stockTitle();
+                                System.out.println("Please enter the height, width");
+                                double height = sc.nextDouble();
+                                double width = sc.nextDouble();
+                                app.stockCollection[currentStock] = new backdrop(type, title, height, width);
+                            }
+                                if (type.equalsIgnoreCase("Costume")) {
+                                    String title = app.stockTitle();
+                                    System.out.println("Please enter the genre, size and category (in respective order)");
+                                    String genre = sc.nextLine();
+                                    String size = sc.nextLine();
+                                    String category = sc.nextLine();
+                                    app.stockCollection[currentStock] = new costume(type, title, genre, size, category);
+                                }
                         currentStock++;
-                    }
-
+                            }
                     break;
                 // Option 2
                 case 2:
@@ -133,8 +143,11 @@ public class stagea {
                 case 7:
                     app.searchStock();
                     break;
-                //exits the program
                 case 8:
+                    app.searchCustomer();
+                    break;
+                //exits the program
+                case 9:
                     System.out.println("You have quit the program\r\n");
                     System.exit(0);
                     break;
@@ -163,6 +176,25 @@ public class stagea {
             name = stockCollection[i].getStockTitle();
             if (name.equalsIgnoreCase(target)) {
                 a = stockCollection[i];
+                a.displayDetails();
+            }
+        }
+        if (a == null) {
+            System.out.println("Error - " + target + " not found!");
+        }
+    }
+    public void searchCustomer() {
+        String target;
+        customer a;
+        a = null;
+        String name;
+        System.out.println("Enter customer name: ");
+        sc.nextLine();
+        target = sc.nextLine();
+        for (int i = 0; i < customers.length && a == null; i++) {
+            name = customers[i].getName();
+            if (name.equalsIgnoreCase(target)) {
+                a = customers[i];
                 a.displayDetails();
             }
         }
@@ -210,7 +242,8 @@ public class stagea {
                 "[5] Display all customer information\n" +
                 "[6] Display all stock information\n" +
                 "[7] Display specific stock information\n" +
-                "[8] Exit program\n" +
+                "[8] Display specific customer information\n" +
+                "[9] Exit program\n" +
                 "Please make your selection now (1-5) ");
         System.out.println(mainMenu);
     }
