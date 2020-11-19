@@ -1,6 +1,6 @@
 package com.assignment3;
 
-public class stock {
+public abstract class stock {
 
     private String title;
     public int ID;
@@ -34,5 +34,6 @@ public class stock {
         else
             status = true;
     }
+    public abstract double calcPrice();
 }
 

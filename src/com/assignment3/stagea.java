@@ -9,6 +9,7 @@ public class stagea {
     stock[] stockCollection;
     customer[] customers;
 
+
     public stagea() {
         this.sc = new Scanner(System.in);
     }
@@ -31,13 +32,21 @@ public class stagea {
                         break;
                     }else {
                         String type = app.stockType();
-                        String title = app.stockTitle();
+                        if(type.equalsIgnoreCase("Prop")){
+                            String title = app.stockTitle();
+                            System.out.println("Please enter the height, width and length");
+                            double height = sc.nextDouble();
+                            double width = sc.nextDouble();
+                            double length = sc.nextDouble();
+                            app.stockCollection[currentStock] = new prop(type, title,height,width,length);
+                        }
+                        else
 
 
-                        app.stockCollection[currentStock] = new stock(type, title);
+
+                        currentStock++;
                     }
-                    currentStock++;
-                   // stock.ID++;
+
                     break;
                 // Option 2
                 case 2:
@@ -47,8 +56,9 @@ public class stagea {
                     }else {
                         String name = app.customerName();
                         app.customers[currentCustomer] = new customer(name);
+                        currentCustomer++;
                     }
-                    currentCustomer++;
+
                     break;
                 // Option 3
                 case 3:
@@ -59,19 +69,19 @@ public class stagea {
                     System.out.println("Enter the name of the customer: ");
                     sc.nextLine();
                     target = sc.nextLine();
-                    for (int i = 0; i < app.customers.length && a == null; i++) {
+                    for (int i = 0; i < currentCustomer && a == null; i++) {
                         if (app.customers[i].getName().equalsIgnoreCase(target)) {
                             String target1;
                             stock b;
                             String stockName;
                             System.out.println("Enter the stock you would like to hire: ");
                             target1 = sc.nextLine();
-                            for(int j=0; j<app.stockCollection.length; j++){
+                            for(int j=0; j<currentStock; j++){
                                 if(app.stockCollection[j].getStockTitle().equalsIgnoreCase(target1)){
                                     if(app.stockCollection[j].getStatus()==false){
                                         System.out.println("Item not available");
-                                    }
-                                    app.customers[i].rentStock(app.stockCollection[j]);
+                                    }else{
+                                    app.customers[i].rentStock(app.stockCollection[j]);}
                                 }
                             }
                         }
@@ -82,28 +92,40 @@ public class stagea {
                     String target2;
                     stock c;
                     String stockName;
+                    sc.nextLine();
                     System.out.println("Enter the stock you would like to return: ");
-                    target2 = sc.next();
-                    for(int j=0; j<app.stockCollection.length; j++) {
+                    target2 = sc.nextLine();
+                    for(int j=0; j<currentStock; j++) {
                         if (app.stockCollection[j].getStockTitle().equalsIgnoreCase(target2)) {
                             if (app.stockCollection[j].getStatus() == true) {
-                                System.out.println("Item is currently available - Item return not available");
-
-                            } else if (app.stockCollection[j].getStatus() == false);
-                                app.stockCollection[j].changeStatus();
-                                System.out.println("Item has now been returned - Thanks!");
+                                System.out.println("Item is currently available - Item return not possible");
+                                break;
+                            } else {
+                                System.out.println("Enter which customer would like to return the item");
+                                String returnCustomer = sc.nextLine();
+                                for (int i = 0; i < currentCustomer; i++) {
+                                    if (app.customers[i].getName().equalsIgnoreCase(returnCustomer)) {
+                                        boolean releaseStatus = app.customers[i].releaseStock(app.stockCollection[j]);
+                                        if (releaseStatus) {
+                                            app.stockCollection[j].changeStatus();
+                                            System.out.println("Item has now been returned - Thanks!");
+                                        } else {
+                                            System.out.println("Item not rented by this customer!");
+                                        }
+                                    }
+                                }
                             }
                         }
-
+                    }
                     break;
                 case 5:
-                    for (int i = 0; i < app.customers.length; i++) {
+                    for (int i = 0; i < currentCustomer; i++) {
                         System.out.println("==============Current Customer==============");
                         app.customers[i].displayDetails();
                     }
                     break;
                 case 6:
-                    for (int i = 0; i < app.stockCollection.length; i++) {
+                    for (int i = 0; i < currentStock; i++) {
                         System.out.println("==============Current Stock==============");
                         app.stockCollection[i].displayDetails();
                     }

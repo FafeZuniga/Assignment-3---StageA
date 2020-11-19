@@ -31,9 +31,24 @@ public class customer {
             System.out.println("Currently rented item ID: " + hire[i].getStockID());}
     }
     public boolean rentStock(stock obj) {
-        hire[rentCount]=obj;
-        obj.changeStatus();
-        rentCount++;
-        return true;
+        for(int i=0;i<4;i++) {
+            if (hire[i] == null) {
+                hire[i] = obj;
+                obj.changeStatus();
+                rentCount++;
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean releaseStock(stock obj){
+        for(int i=0; i<rentCount;i++){
+            if (hire[i].getStockID()==obj.getStockID()){
+                hire[i]=null;
+                rentCount--;
+                return true;
+            }
+        }
+        return false;
     }
 }
