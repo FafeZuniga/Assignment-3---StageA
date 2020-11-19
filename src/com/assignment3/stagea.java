@@ -79,6 +79,21 @@ public class stagea {
                     break;
                 //Option 4
                 case 4:
+                    String target2;
+                    stock c;
+                    String stockName;
+                    System.out.println("Enter the stock you would like to return: ");
+                    target2 = sc.next();
+                    for(int j=0; j<app.stockCollection.length; j++) {
+                        if (app.stockCollection[j].getStockTitle().equalsIgnoreCase(target2)) {
+                            if (app.stockCollection[j].getStatus() == true) {
+                                System.out.println("Item is currently available - Item return not available");
+
+                            } else if (app.stockCollection[j].getStatus() == false);
+                                app.stockCollection[j].changeStatus();
+                                System.out.println("Item has now been returned - Thanks!");
+                            }
+                        }
 
                     break;
                 case 5:
