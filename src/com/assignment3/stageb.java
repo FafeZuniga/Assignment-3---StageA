@@ -2,6 +2,11 @@ package com.assignment3;
 
 import java.util.Scanner;
 
+/*
+This program allows a user to enter
+different types of stock and also add customers.
+Each customer can hire or return the different type of stock.
+*/
 public class stageb {
     static Scanner sc;
     int numStock = 0;
@@ -25,7 +30,7 @@ public class stageb {
         while (true) {
             app.printMenu();
             switch (app.returnChoice()) {
-                //Option 1
+                //Option 1 - Adds a stock item
                 case 1:
                     if (currentStock == app.stockCollection.length) {
                         System.out.println("Error - You cannot add any more stock.\n");
@@ -58,7 +63,7 @@ public class stageb {
                         currentStock++;
                             }
                     break;
-                // Option 2
+                // Option 2 - Adds a customer
                 case 2:
                     if (currentCustomer == app.stockCollection.length) {
                         System.out.println("Error - You cannot add any more customers.\n");
@@ -70,7 +75,7 @@ public class stageb {
                     }
 
                     break;
-                // Option 3
+                // Option 3 - Allows a customer to hire an item
                 case 3:
                     String target;
                     customer a;
@@ -97,7 +102,7 @@ public class stageb {
                         }
                     }
                     break;
-                //Option 4
+                //Option 4 - Allows a customer to return an item
                 case 4:
                     String target2;
                     stock c;
@@ -128,25 +133,29 @@ public class stageb {
                         }
                     }
                     break;
+                    //Option 5 - Displays all details of every customer in the system
                 case 5:
                     for (int i = 0; i < currentCustomer; i++) {
                         System.out.println("==============Current Customer==============");
                         app.customers[i].displayDetails();
                     }
                     break;
+                //Option 6 - Displays all details of every stock item in the system
                 case 6:
                     for (int i = 0; i < currentStock; i++) {
                         System.out.println("==============Current Stock==============");
                         app.stockCollection[i].displayDetails();
                     }
                     break;
+                //Option 7 - Searches for a specific stock item in the system
                 case 7:
                     app.searchStock();
                     break;
+                //Option 8 - Searches for a specific customer in the system
                 case 8:
                     app.searchCustomer();
                     break;
-                //exits the program
+                //Option 9 - Exits the program
                 case 9:
                     System.out.println("You have quit the program\r\n");
                     System.exit(0);
@@ -268,5 +277,4 @@ public class stageb {
             }
         }
     }
-
 }
