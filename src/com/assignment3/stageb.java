@@ -229,14 +229,14 @@ public class stageb {
     
     private String stockTitle() {
         System.out.println("Please enter the title of the stock");
-        String title = sc.next();
+        String title = sc.nextLine();
         return title;
     }
 
 
     private String stockType() {
         System.out.println("Please enter the type of stock (Backdrop/Prop/Costume)");
-        String type = sc.next();
+        String type = sc.nextLine();
         return type;
     }
 
@@ -256,7 +256,7 @@ public class stageb {
                 "Please make your selection now (1-5) ");
         System.out.println(mainMenu);
     }
-    public int returnChoice() { return sc.nextInt();}
+    public int returnChoice() {      return Integer.parseInt(sc.nextLine());}
 
     public String stockName() {
         System.out.println("Please enter the name of the stock");
